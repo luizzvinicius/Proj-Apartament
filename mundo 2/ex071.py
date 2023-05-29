@@ -1,9 +1,9 @@
 print("Caixa eletrônico")
-# 4.399999852466863e-06
+# 2.999999196617864e-06
 
 valor = int(input("Qual valor você quer sacar? R$"))
 ced100, ced50, ced20, ced10 = 0, 0, 0, 0
-while True:
+while valor >= 10:
     if valor >= 100:
         valor -= 100
         ced100 += 1
@@ -16,11 +16,8 @@ while True:
         valor -= 20
         ced20 += 1
         continue
-    if valor >= 10:
-        valor -= 10
-        ced10 += 1
-        continue
-    break
+    valor -= 10
+    ced10 += 1
 
 print(f"{ced100} cédulas de 100")
 print(f"{ced50} cédulas de 50")

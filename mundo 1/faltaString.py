@@ -1,1 +1,0 @@
-print("falta a aula sobre strings")

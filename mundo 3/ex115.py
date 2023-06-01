@@ -18,7 +18,7 @@ def fileExists(name):
 while True:
     header("Menu Principal")
     print("1- Ver pessoas cadastradas\n2- Cadastrar novas pessoas\n3- Sair do sistema")
-    opt = uteis.lerOption("Sua opção: ", "1-3")
+    opt = uteis.lerOption("Sua opção: ", 3)
 
     if opt == 1:
         header("Pessoas cadastradas")

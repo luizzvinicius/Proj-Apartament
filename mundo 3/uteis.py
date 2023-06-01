@@ -1,38 +1,33 @@
 def lerString(msg, exeptMsg="Inválido"):
     while True:
-        palavra = input(msg)
-        if not palavra.isidentifier():
-            print(exeptMsg + "\n")
-            continue
-        break
-    return palavra
+        palavra = input(msg).strip().capitalize()
+        if palavra.isidentifier():
+            return palavra
+        print(exeptMsg + "\n")
 
 
 def lerInteiro(msg, exeptMsg="Inválido"):
     while True:
         try:
-            num = input(msg)
-            return int(num)
+            num = int(input(msg))
+            return num
         except ValueError:
             print(exeptMsg + "\n")
-        continue
 
 
 def lerFloat(msg, exeptMsg="Inválido"):
     while True:
         try:
-            num = input(msg).replace(",",".")
+            num = input(msg).replace(",", ".")
             return float(num)
         except ValueError:
             print(exeptMsg + "\n")
-        continue
 
 
-def lerOption(msg, range):
+def lerOption(msg, max):
     while True:
         opt = lerInteiro(msg, "Digite um número")
-        if opt < int(range[0]) or opt > int(range[2:]):
+        if opt < 1 or opt > max:
             print("\033[31mOpção inválida.\033[m" + "\n")
             continue
-        break
-    return opt
+        return opt

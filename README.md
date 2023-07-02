@@ -1,6 +1,5 @@
-# Algumas atividades do curso
-Atividades que senti um grau de dificuldade e refiz para melhorar a lógica de programação ou que agregou algum conhecimento novo na sintaxe da linguagem
+# Projeto apartamento
+Projeto feito com Python e PostgreSQL que simula uma portaria de um prédio
 
-## Branchs:
-1. curso-em-video: atividades do curso do Guanabara
-2. main: atividades da faculdade
+## Acompanhe o modelo relacional:
+![modelo relacional] (modelo-relacional.png)

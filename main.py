@@ -1,4 +1,5 @@
+'''Módulo com funções muito usadas no projeto'''
 from utils import uteis
 
-nome = uteis.lerString("nome: ")
+nome = uteis.ler_string("nome: ")
 print(nome)

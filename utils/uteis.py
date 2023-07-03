@@ -28,11 +28,11 @@ def ler_float(msg, exept_msg="Inválido"):
             print(exept_msg + "\n")
 
 
-def ler_option(msg, max_opt):
+def ler_option(msg, max_opt, exept_msg="Opção inválida."):
     '''Função que lê opções, dado o parâmetro max_opt, e a retorna'''
     while True:
         opt = ler_inteiro(msg, "Digite um número")
         if opt < 1 or opt > max_opt:
-            print("\033[31mOpção inválida.\033[m\n")
+            print(f"\033[31m{exept_msg}\033[m\n")
             continue
         return opt

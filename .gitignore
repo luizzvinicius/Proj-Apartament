@@ -1,3 +1,5 @@
 # Ignorar __pycache__
 utils/__pycache__/
+
+# Observações do projeto
 teste.py

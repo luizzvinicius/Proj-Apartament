@@ -1,0 +1,3 @@
+# Ignorar __pycache__
+teste.py
+utils/__pycache__/

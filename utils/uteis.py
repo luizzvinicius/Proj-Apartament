@@ -2,7 +2,7 @@
 
 
 def ler_string(msg, exept_msg="Inválido"):
-    '''Função que lê uma string e a retorna capitalizada'''
+    '''Função que lê uma string e a retorna já sem os espaços em branco.'''
     while True:
         palavra = input(msg).strip()
         if palavra.isidentifier():
@@ -11,7 +11,7 @@ def ler_string(msg, exept_msg="Inválido"):
 
 
 def ler_inteiro(msg, exept_msg="Inválido"):
-    '''Função que lê um inteiro e o retorna'''
+    '''Função que lê um inteiro e o retorna.'''
     while True:
         try:
             num = int(input(msg))
@@ -21,7 +21,7 @@ def ler_inteiro(msg, exept_msg="Inválido"):
 
 
 def ler_option(msg, max_opt, exept_msg="Opção inválida."):
-    '''Função que lê opções, dado o parâmetro max_opt, e a retorna'''
+    '''Função que lê opções, dado o parâmetro max_opt, e a retorna.'''
     while True:
         opt = ler_inteiro(msg, "Digite números")
         if 0 < opt <= max_opt:

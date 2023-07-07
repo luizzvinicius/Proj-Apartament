@@ -31,7 +31,7 @@ def placa(str_palca):
 
 
 def name(str_nome):
-    '''Valida se a placa do carro obedece o padrão normal ou mercosul'''
+    '''Valida uma string permitindo apenas letras, acentos e espaços'''
     if re.match(r"^[a-zA-ZÀ-ÿ\s]+$", str_nome):
         return True
     return False

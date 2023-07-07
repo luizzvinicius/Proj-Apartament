@@ -10,7 +10,7 @@ def main():
     # print("[ 4 ] Adicionar observação ao carro")
     # print("[ 5 ] Editar cor do carro(s)")
     # apartament = apartament_register()
-    owner = person_register(owner=True)
+    # owner = person_register(owner=True)
 
     # msg = "Quantas pessoas vão morar no apartamento? "
     # people_in_apartament = uteis.ler_option(msg, max_opt=4, exept_msg="Quantidade inválida. Máximo 4")
@@ -19,19 +19,21 @@ def main():
     #     print(f"\n{i}º Morador")
     #     people.setdefault(f"person{i}", person_register())
 
-    # print("Você possui carro?\n[ 1 ] Sim\n[ 2 ] Não\n")
-    # opt = uteis.ler_option("Digite o número: ", max_opt=2)
-    # car = car_register(opt)
-    # print()
-
-    print(owner)
+    print("Você possui carro?\n[ 1 ] Sim\n[ 2 ] Não\n")
+    opt = uteis.ler_option("Digite o número: ", max_opt=2)
+    car = car_register(opt)
+    print(car)
+    print("Qual alteração você quer fazer no carro?\n[ 1 ] Adicionar observação\n[ 2 ] Alterar cor")
+    modification = uteis.ler_option("Digite o número: ", max_opt=2)
+    car = alter_car(car, modification)
+    print(car)
+    # print(owner)
     # print(people)
-    # print(car)
     # print(apartament)
 
 
 def apartament_register():
-    '''Função que cria a numeração do apartamento'''
+    '''Função que cria a numeração do apartamento.'''
     bloco = uteis.ler_option("Bloco: ", max_opt=29, exept_msg="Número de bloco inválido.")
     bloco = "0" + str(bloco) if bloco < 10 else str(bloco)
 
@@ -46,7 +48,7 @@ def apartament_register():
 
 
 def person_register(owner=False):
-    '''Função que registra as pessoas ou proprietário que moram no apartamento'''
+    '''Função que registra as pessoas ou proprietário que moram no apartamento.'''
     msg = "Nome do proprietário do apartamento: " if owner else "Nome: "
     name = "1"
     while True:
@@ -86,10 +88,28 @@ def car_register(opt):
     car = {
         "placa": placa or None,
         "cor": color or None,
-        "model": model or None,
-        "observation": "Nenhuma observação"
+        "modelo": model or None,
+        "observação": "Nenhuma observação"
     }
     return car
 
+
+def alter_car(car, option):
+    '''Recebe um objeto carro e um parâmetro (1- observation; 2- color) e o retorna alterado.'''
+    cars_key = "observação" if option == 1 else "cor"
+    new_info = "1"
+    while True:
+        new_info = input(f"Qual a nova {cars_key} do carro: ").strip()
+        if validation.name(new_info) is True:
+            break
+        print(f"Formato de {cars_key} inválido.\n")
+
+    car[cars_key] = new_info
+    return car
+
+
+def delete_car():
+    '''Define todas as informações do carro para None.'''
+    return {"placa": None, "cor": None, "modelo": None, "observação": "Nenhuma observação"}
 
 main()

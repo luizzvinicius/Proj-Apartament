@@ -55,6 +55,7 @@ def person_register(owner=False):
     while True:
         name = input(msg).strip().title().split(" ")
         if validation.name(name) is True:
+            name = " ".join(name)
             break
         print("Formato de nome inválido.\n")
 

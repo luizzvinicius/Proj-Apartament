@@ -8,4 +8,4 @@ Projeto feito com Python e PostgreSQL que simula uma portaria de um prédio
 
 Configure o seu .env com:
 last_bloco = blocos que contém no seu condomínio
-Your postgree's user and password, etc.
+Your postgre's user and password, etc.

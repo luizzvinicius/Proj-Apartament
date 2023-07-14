@@ -1,5 +1,10 @@
 '''Módulo com funções muito usadas no projeto'''
+import dotenv
 from utils import uteis, validation
+
+
+dotenv.load_dotenv(verbose=True, override=True)
+last_bloco = dotenv.get_key(".env", "last_bloco")
 
 
 def main():
@@ -35,7 +40,7 @@ def main():
 
 def apartament_register():
     '''Função que cria a numeração do apartamento.'''
-    bloco = uteis.ler_option("Bloco: ", max_opt=29, exept_msg="Número de bloco inválido.")
+    bloco = uteis.ler_option("Bloco: ", max_opt=last_bloco, exept_msg="Número de bloco inválido.")
     bloco = "0" + str(bloco) if bloco < 10 else str(bloco)
 
     num_apto = 0
@@ -112,5 +117,6 @@ def alter_car(car, option):
 def delete_car():
     '''Define todas as informações do carro para None.'''
     return {"placa": None, "cor": None, "modelo": None, "observação": None}
+
 
 main()

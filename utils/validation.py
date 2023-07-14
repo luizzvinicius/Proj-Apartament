@@ -35,6 +35,6 @@ def name(person_name):
     if len(person_name) < 3:
         return False
     for word in person_name:
-        if not (len(word) > 2 and re.match(r"^[a-zA-ZÀ-ÿ\s]+$", word)):
+        if not (re.match(r"^[a-zA-ZÀ-ÿ\s]+$", word)):
             return False
     return True

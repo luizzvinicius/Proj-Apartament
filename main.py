@@ -1,5 +1,6 @@
 '''Módulo com funções muito usadas no projeto'''
 import dotenv
+import vehicle
 from utils import uteis, validation
 
 
@@ -15,7 +16,7 @@ def main():
     # print("[ 4 ] Adicionar observação ao carro")
     # print("[ 5 ] Editar cor do carro(s)")
     # apartament = apartament_register()
-    owner = person_register(owner=True)
+    # owner = person_register(owner=True)
 
     # msg = "Quantas pessoas vão morar no apartamento? "
     # people_in_apartament = uteis.ler_option(msg, max_opt=4, exept_msg="Quantidade inválida. Máximo 4")
@@ -24,16 +25,19 @@ def main():
     #     print(f"\n{i}º Morador")
     #     people.setdefault(f"person{i}", person_register())
 
-    # print("Você possui carro?\n[ 1 ] Sim\n[ 2 ] Não\n")
-    # opt = uteis.ler_option("Digite o número: ", max_opt=2)
-    # car = car_register(opt)
-    # print(car)
-    # print("Qual alteração você quer fazer no carro?\n[ 1 ] Adicionar observação\n[ 2 ] Alterar cor")
-    # modification = uteis.ler_option("Digite o número: ", max_opt=2)
-    # car = alter_car(car, modification)
+    print("Você possui veículo?\n[ 1 ] Sim\n[ 2 ] Não")
+    opt = uteis.ler_option("Digite o número: ", max_opt=2)
 
-    # print(car)
-    print(owner)
+    automobile = vehicle.register(opt)
+    if opt == 1: # provisório
+        print(f"Qual alteração você quer fazer no(a) {automobile['categoria']}?\n[ 1 ] Adicionar observação\n[ 2 ] Alterar cor")
+        modification = uteis.ler_option("Digite o número: ", max_opt=2)
+        automobile = vehicle.alter(automobile, modification)
+        print(automobile)
+        automobile = vehicle.delete()
+    
+    print(automobile)
+    # print(owner)
     # print(people)
     # print(apartament)
 
@@ -75,48 +79,6 @@ def person_register(owner=False):
             print(expt)
 
     return {"name": name, "cpf": cpf}
-
-
-def car_register(opt):
-    '''
-        Função que registra o carro do apartamento.\n
-        Parâmetro opt = 1 para possui carro, qualquer outro número para não possui carro.
-    '''
-    if opt == 1:
-        while True:
-            placa = input("Qual a placa do carro: ").strip()
-            if validation.placa(placa) is True:
-                break
-            print("Placa inválida.\n")
-
-        color = uteis.ler_string("Qual a cor do carro: ")
-        model = uteis.ler_string("Qual o modelo do carro: ")
-    car = {
-        "placa": placa or None,
-        "cor": color or None,
-        "modelo": model or None,
-        "observação": "Nenhuma observação"
-    }
-    return car
-
-
-def alter_car(car, option):
-    '''Recebe um objeto carro e um parâmetro (1- observation; 2- color) e o retorna alterado.'''
-    cars_key = "observação" if option == 1 else "cor"
-    new_info = "1"
-    while True:
-        new_info = input(f"Qual a nova {cars_key} do carro: ").strip()
-        if validation.name(new_info) is True:
-            break
-        print(f"Formato de {cars_key} inválido.\n")
-
-    car[cars_key] = new_info
-    return car
-
-
-def delete_car():
-    '''Define todas as informações do carro para None.'''
-    return {"placa": None, "cor": None, "modelo": None, "observação": None}
 
 
 main()

@@ -1,6 +1,6 @@
-# Ignorar __pycache__
-utils/__pycache__/
+# Ignorar cache
 .pytest_cache
+__pycache__
 
 # Observações do projeto
 teste.py

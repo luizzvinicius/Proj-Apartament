@@ -30,6 +30,13 @@ def placa(str_palca):
     return False
 
 
+def phone_number(number):
+    '''Valida se a placa do carro obedece o padrão normal ou mercosul'''
+    if re.match(r"^\d{11}$", number):
+        return True
+    return False
+
+
 def name(person_name):
     '''Valida uma string permitindo apenas letras, acentos e espaços'''
     if len(person_name) < 3:

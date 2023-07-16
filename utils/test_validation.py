@@ -7,6 +7,7 @@ def test_cpf_format_is_ok():
     assert validation.cpf("-1897548949") is False
     assert validation.cpf("718.975.489.49") is False
     assert validation.cpf(" 718.975.489.49 ") is False
+    assert validation.cpf("718.975.489 49") is False
     assert validation.cpf("718.975.489-49") is True
 
 def test_apto_number_is_ok():

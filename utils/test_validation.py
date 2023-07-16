@@ -11,7 +11,13 @@ def test_cpf_format_is_ok():
     assert validation.cpf("718.975.489-49") is True
 
 def test_apto_number_is_ok():
-    pass
+    assert validation.apto("001") is True
+    assert validation.apto("004") is True
+    assert validation.apto("304") is True
+    assert validation.apto("000") is False
+    assert validation.apto("100") is False
+    assert validation.apto("501") is False
+    assert validation.apto("0402") is False
 
 
 def test_placa_format_is_ok():

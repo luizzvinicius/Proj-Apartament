@@ -7,17 +7,13 @@ from utils import uteis, validation
 
 
 dotenv.load_dotenv(verbose=True, override=True)
-last_bloco = dotenv.get_key(".env", "last_bloco")
+last_bloco = int(dotenv.get_key(".env", "last_bloco"))
 
 
 def main():
     '''Função que executa o programa de fato.'''
-    # print("[ 1 ] Cadastrar proprietário do apartamento")
-    # print("[ 2 ] Cadastrar moradores do apartamento")
-    # print("[ 3 ] Cadastrar carro(s) do apartamento")
-    # print("[ 4 ] Adicionar observação ao carro")
-    # print("[ 5 ] Editar cor do carro(s)")
-    # apartament = apartament_register()
+    
+    apartament = apartament_register()
     # owner = person.person_register(owner=True)
 
     # msg = "Quantas pessoas vão morar no apartamento? "
@@ -47,7 +43,7 @@ def main():
     # print(automobile)
     # print(owner)
     # print(people)
-    # print(apartament)
+    print(apartament)
 
 
 def apartament_register():
@@ -58,8 +54,11 @@ def apartament_register():
     num_apto = 0
     while True:
         num_apto = uteis.ler_inteiro("Número do apartamento: ")
+        num_apto = str(num_apto)
+        if len(num_apto) == 1:
+            num_apto = "00" + num_apto
+
         if validation.apto(num_apto) is True:
-            num_apto = str(num_apto)
             break
 
     return {"bloco": bloco, "apartamento": num_apto, "Banco de dados": bloco + num_apto}

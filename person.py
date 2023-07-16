@@ -30,6 +30,5 @@ def person_register(owner=False):
             phone_number = f"({phone_number[0:2]}) {phone_number[2:7]}-{phone_number[7:]}"
             break
         print("Telefone inválido.\n")
-    date = d.today()
 
-    return {"name": name, "cpf": cpf, "telefone": phone_number, "data": date}
+    return {"name": name, "cpf": cpf, "telefone": phone_number, "data": d.today()}

@@ -11,10 +11,7 @@ def cpf(str_cpf):
 
 def apto(num_apto):
     '''Valida o número do apartamento'''
-    num_apto = str(num_apto)
-    if len(num_apto) == 1:
-        num_apto = "00" + num_apto
-    elif len(num_apto) == 2 or len(num_apto) > 3:
+    if len(num_apto) == 2 or len(num_apto) > 3:
         print("\033[31mNúmero de apartamento inválido.\033[m\n")
         return False
     if not (num_apto[0] in ("0", "1", "2", "3") and num_apto[1] == "0" and num_apto[2] in ("1", "2", "3", "4")):

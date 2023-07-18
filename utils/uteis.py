@@ -27,3 +27,9 @@ def ler_option(msg, max_opt, exept_msg="Opção inválida."):
         if 0 < opt <= max_opt:
             return opt
         print(f"\033[31m{exept_msg}\033[m\n")
+
+
+def show_array(array):
+    '''Função que mostra um objeto na forma listada.'''
+    for i, msg in enumerate(array, start=1):
+        print(f"[ {i} ] {msg}")

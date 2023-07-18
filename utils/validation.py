@@ -2,13 +2,6 @@
 import re
 
 
-def lengh_is_11(string):
-    '''Retorna True se o CPF está no formato "xxx.xxx.xxx-xx". Caso contrário False'''
-    if re.match(r"^\d{11}$", string):
-        return True
-    return False
-
-
 def apto(num_apto):
     '''Valida o número do apartamento'''
     if len(num_apto) == 2 or len(num_apto) > 3:

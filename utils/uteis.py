@@ -19,6 +19,20 @@ def ler_inteiro(msg, exept_msg="Inválido"):
         except ValueError:
             print(exept_msg + "\n")
 
+def ler_onze_digitos(kind):
+    '''Lê um número com 11 dígitos (CPF ou Telefone) e o retorna'''
+    msg = ""
+    if kind == "CPF":
+        msg = "CPF (apenas números): "
+    elif kind == "Telefone":
+        msg = "Seu número de telefone (com DDD, 9 inicial, sem parênteses ou espaço): "
+    
+    while True:
+        number = input(msg).strip()
+        if len(number) == 11:
+            return number
+        print(f"{kind} inválido.\n")
+
 
 def ler_option(msg, max_opt, exept_msg="Opção inválida."):
     '''Função que lê opções, dado o parâmetro max_opt, e a retorna.'''

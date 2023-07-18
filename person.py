@@ -22,13 +22,16 @@ def person_register(owner=False):
         except ValueError as expt:
             print(expt)
     
+    phone_number = phone_register()
+
+    return {"name": name, "cpf": cpf, "telefone": phone_number, "data": d.today()}
+
+
+def phone_register():
     phone_number = "1"
     msg = "Seu número de telefone (com DDD, 9 inicial, sem parênteses e espaço): "
     while True:
         phone_number = input(msg).strip()
         if validation.phone_number(phone_number) is True:
-            phone_number = f"({phone_number[0:2]}) {phone_number[2:7]}-{phone_number[7:]}"
-            break
+            return f"({phone_number[0:2]}) {phone_number[2:7]}-{phone_number[7:]}"
         print("Telefone inválido.\n")
-
-    return {"name": name, "cpf": cpf, "telefone": phone_number, "data": d.today()}

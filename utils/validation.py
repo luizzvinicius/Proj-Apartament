@@ -2,9 +2,9 @@
 import re
 
 
-def cpf(str_cpf):
+def lengh_is_11(string):
     '''Retorna True se o CPF está no formato "xxx.xxx.xxx-xx". Caso contrário False'''
-    if re.match(r"^\d{3}.\d{3}.\d{3}-\d{2}$", str_cpf):
+    if re.match(r"^\d{11}$", string):
         return True
     return False
 
@@ -23,13 +23,6 @@ def apto(num_apto):
 def placa(str_palca):
     '''Valida se a placa do carro obedece o padrão normal ou mercosul'''
     if re.match(r"^[A-Za-z]{3}\d{1}[A-Za-z0-9]{1}\d{2}$", str_palca):
-        return True
-    return False
-
-
-def phone_number(number):
-    '''Valida se a placa do carro obedece o padrão normal ou mercosul'''
-    if re.match(r"^\d{11}$", number):
         return True
     return False
 

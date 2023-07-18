@@ -3,7 +3,7 @@ Projeto feito com Python e PostgreSQL que simula a portaria de um prédio.
 
 ## Acompanhe o modelo relacional:
 <div align="center">
-  <img src="">
+  <img src="https://github.com/luizzvinicius/Atividades-Python/assets/93850693/2ee9fffb-7fb5-4119-9366-29f4fa79e682">
 </div>
 
 ## Configurações:

@@ -1,8 +1,7 @@
 # Arquivo para testar velocidade do código
 '''
     Falta fazer:
-    1- Criar um painel de opções
-    2- Criar testes
+    1- Criar testes
 '''
 # import timeit
 

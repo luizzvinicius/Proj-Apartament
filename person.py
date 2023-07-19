@@ -1,37 +1,32 @@
-from datetime import date as d
-from utils import validation
+class Person:
+    '''Classe que cria o proprietátio e moradores do apartamento.'''
 
-def person_register(owner=False):
-    '''Função que registra as pessoas ou proprietário que moram no apartamento.'''
-    msg = "Nome do proprietário do apartamento: " if owner else "Nome: "
-    name = "1"
-    while True:
-        name = input(msg).strip().title().split(" ")
-        if validation.name(name) is True:
-            name = " ".join(name)
-            break
-        print("Formato de nome inválido.\n")
+    def __init__(self, info, data_cadastro):
+        self.cpf = info['cpf']
+        self.nome = info['name']
+        self.telefone = info['telefone']
+        self.data_cadastro = data_cadastro
 
-    cpf = 0
-    while True:
-        try:
-            cpf = input("CPF (no formato xxx.xxx.xxx-xx): ").strip()
-            if validation.cpf(cpf) is True:
-                break
-            raise ValueError("\033[31mFormato inválido.\033[m\n")
-        except ValueError as expt:
-            print(expt)
-    
-    phone_number = phone_register()
+    def to_string(self):
+        return f"Person: [CPF: {self.cpf}, nome: {self.nome}, telefone: {self.telefone}, data_cadastro: {self.data_cadastro}]"
 
-    return {"name": name, "cpf": cpf, "telefone": phone_number, "data": d.today()}
+    def get_cpf(self):
+        return self.cpf
 
+    def set_cpf(self, cpf):
+        self.cpf = cpf
 
-def phone_register():
-    phone_number = "1"
-    msg = "Seu número de telefone (com DDD, 9 inicial, sem parênteses e espaço): "
-    while True:
-        phone_number = input(msg).strip()
-        if validation.phone_number(phone_number) is True:
-            return f"({phone_number[0:2]}) {phone_number[2:7]}-{phone_number[7:]}"
-        print("Telefone inválido.\n")
+    def get_nome(self):
+        return self.nome
+
+    def set_nome(self, nome):
+        self.nome = nome
+
+    def get_telefone(self):
+        return self.telefone
+
+    def set_telefone(self, telefone):
+        self.telefone = telefone
+
+    def get_data_cadastro(self):
+        return self.data_cadastro

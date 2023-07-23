@@ -1,4 +1,6 @@
 '''Módulo de formatação de strings.'''
+
+
 def format_cpf(str_cpf):
     '''Formata o CPF para xxx.xxx.xxx-xx'''
     return f"{str_cpf[0:4]}.{str_cpf[3:6]}.{str_cpf[6:9]}-{str_cpf[9:]}"

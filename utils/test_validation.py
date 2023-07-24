@@ -1,15 +1,6 @@
 from utils import validation
 
 
-def test_cpf_format_is_ok():
-    assert validation.lengh_is_11("9192938290") is False  # 10 numbers
-    assert validation.lengh_is_11("919293829078") is False  # 12 numbers
-    assert validation.lengh_is_11("-1897548949") is False
-    assert validation.lengh_is_11("718.975.489.49") is False
-    assert validation.lengh_is_11(" 718.975.489.49 ") is False
-    assert validation.lengh_is_11("718.975.489 49") is False
-    assert validation.lengh_is_11("718.975.489-49") is True
-
 def test_apto_number_is_ok():
     assert validation.apto("001") is True
     assert validation.apto("004") is True

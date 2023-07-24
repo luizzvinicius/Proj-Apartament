@@ -4,7 +4,10 @@ import dotenv
 from apartament import Apartament
 from vehicle import Vehicle
 from person import Person
+from connection_pool import Connection
 from utils import uteis, validation
+from Dao.proprietario_DAO import Proprietario_DAO
+from Dao.person_DAO import Person_DAO
 
 
 dotenv.load_dotenv(verbose=True, override=True)
@@ -14,9 +17,10 @@ date = date.today()
 
 opt_msg = (
     'Cadastrar apartamento',
-    'Editar proprietário do apartamento',
-    'Editar moradores do apartamento (cadastrar novamente)',
+    'Cadastrar morador',
+    'Cadastrar veículo',
     'Editar cor/observação do veículo',
+    'Deletar proprietário e apartamento',
     'Deletar morador do apartamento',
     'Deletar veículo do apartamento',
     'Consultas',
@@ -24,8 +28,8 @@ opt_msg = (
 )
 query_msg = (
     'Consultar apartamento (mostrar tudo)',
-    'Consultar proprietário (CPF ou nome)',
-    'Consultar morador (nº apartamento ou Nome)',
+    'Consultar proprietário (CPF)',
+    'Consultar morador (nº apartamento)',
     'Consultar veículo (Placa ou modelo)'
 )
 
@@ -40,54 +44,72 @@ def main(option_msg, queries_msg, date_register):
         uteis.show_array(opt_msg)
         choice = uteis.ler_option("Sua escolha: ", max_opt=len(option_msg)) - 1
 
-        match choice:
-            case 0:
-                num_apto = apartament_register()
-                owner = person_register(owner=True)
-                people = apartament_residents()
+        if choice == 0:
+            # cadastrar apartamento
+            num_apto = apartament_register()
+            owner = person_register(owner=True)
+            people = apartament_residents()
 
-                print("Você possui veículo?\n[ 1 ] Sim\n[ 2 ] Não")
-                opt = uteis.ler_option("Digite o número: ", max_opt=2)
-                automobile = None
-                if opt == 1:
-                    print("\nQual categoria?\n[ 1 ] Carro\n[ 2 ] Moto")
-                    category = uteis.ler_option("Digite o número: ", max_opt=2, exept_msg="Categoria inválida.")
-                    automobile = vehicle_register(category)
+            print("Você possui veículo?\n[ 1 ] Sim\n[ 2 ] Não")
+            opt = uteis.ler_option("Digite o número: ", max_opt=2)
+            automobile = None
+            if opt == 1:
+                print("\nQual categoria?\n[ 1 ] Carro\n[ 2 ] Moto")
+                category = uteis.ler_option(
+                    "Digite o número: ", max_opt=2, exept_msg="Categoria inválida.")
+                automobile = vehicle_register(category)
 
-                apartamento = Apartament(num_apto, date_register)
-                owner = Person(owner, date_register)
+            apartamento = Apartament(num_apto, date_register)
+            owner = Person(owner, date_register)
 
-                print(apartamento.to_string())
-                print(owner.to_string())
-                for p in people:
-                    print(p.to_string())
-                if automobile is not None:
-                    print(automobile.to_string())
+            print(apartamento.to_string())
+            print(owner.to_string())
+            for p in people:
+                print(p.to_string())
+            if automobile is not None:
+                print(automobile.to_string())
 
-            # case 1:
+        # if choice == 1:
+        #   cadastrar morador
 
-            # case 2:
+        # if choice == 2:
+        #   cadastrar veículo
+        #     print(f"Qual alteração você quer fazer no(a) {automobile['categoria']}?")
+        #     print("[ 1 ] Adicionar observação\n[ 2 ]Alterar cor")
+        #     opt = uteis.ler_option("Digite o número: ", max_opt=2)
+        #     automobile = vehicle.alter(automobile, opt)
+        #     print(automobile)
 
-            # case 3:
+        # if choice == 3:
+        # editar cor/observação
 
-            # case 4:
-            #     print(f"Qual alteração você quer fazer no(a) {automobile['categoria']}?")
-            #     print("[ 1 ] Adicionar observação\n[ 2 ]Alterar cor")
-            #     opt = uteis.ler_option("Digite o número: ", max_opt=2)
-            #     automobile = vehicle.alter(automobile, opt)
-            #     print(automobile)
+        # if choice == 4:
+        # deletar proprietário
 
-            # case 5:
-            #     automobile = vehicle.delete()
-            #     print("Veículo apagado do sistema.")
+        # if choice == 5:
+        # deletar morador
 
-            case 6:
-                uteis.show_array(queries_msg)
-                choice = uteis.ler_option("Sua escolha: ", max_opt=len(queries_msg)) - 1
+        # if choice == 6:
+        # deletar veículo
 
-            case 7:
-                break
-    print("Portaria encerrada.")
+        if choice == 7:
+            uteis.show_array(queries_msg)
+            n_consulta = uteis.ler_option("Sua escolha: ", max_opt=len(queries_msg)) - 1
+            # if n_consulta == 0:
+                # select * from proprietario where cpf = (select cpf from apartamento where numero = '02203');
+                # select * from pessoa where num_apto = '02203';
+                # select * from veiculo where num_apto = '02203';
+            # if n_consulta == 1:
+            if n_consulta == 2:
+                pessoas = Person_DAO().select('02203')
+                print(pessoas)
+
+            # if n_consulta == 3:
+
+        if choice == 8:
+            Connection.close_conn()
+            break
+    print("\nPortaria encerrada.")
 
 
 def apartament_register():
@@ -152,25 +174,6 @@ def vehicle_register(category):
     model = uteis.ler_string(f"Qual o modelo do(a) {category}: ")
 
     return Vehicle(placa, category, color, model, "Nenhuma observação", date.today())
-
-
-"""
-DAO Vehicle
-def alter(option, new_info):
-    '''Recebe opção (1- observation; 2- color) e nova informação.\nRealiza alteração.'''
-    match option:
-        case 1:
-            self.observacao = new_info
-        case 2:
-            self.cor = new_info
-        case _:
-            print("Indefinido.")
-
-
-def delete():
-    '''Define todas as informações do carro para None.'''
-    return {"categoria": None, "placa": None, "cor": None, "modelo": None, "data": None, "observação": None}
-"""
 
 
 main(opt_msg, query_msg, date)

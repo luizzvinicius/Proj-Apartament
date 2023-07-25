@@ -1,3 +1,4 @@
+import psycopg2
 from psycopg2 import pool
 import dotenv
 
@@ -27,8 +28,8 @@ class Connection:
                     port=cls.__port
                 )
                 return cls._pool
-            except Exception as expt:
-                print(f"Falha ao criar o pools de conexão: {expt}")
+            except psycopg2.Error as erro:
+                print(f"Falha ao criar o pools de conexão: {erro}")
         else:
             return cls._pool
 

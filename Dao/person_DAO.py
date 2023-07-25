@@ -2,7 +2,7 @@ from pool_cursors import Cursors
 from person import Person
 
 
-class Person_DAO:
+class Person_Dao:
     def insert(self, person: Person, num_apto):
         sql = "insert into pessoa (cpf, nome, telefone, data_cadastro, num_apto) values (%s, %s, %s, %s, %s);"
         values = (person.get_cpf(), person.get_nome(), person.get_telefone(), person.get_data_cadastro(), num_apto)

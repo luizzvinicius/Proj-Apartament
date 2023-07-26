@@ -5,7 +5,7 @@ from person import Person
 
 class Person_Dao:
     def insert(self, person: Person, num_apto):
-        sql = "insert into pessoa (cpf, nome, telefone, data_cadastro, num_apto) values (%s, %s, %s, %s, %s);"
+        sql = "insert into pessoa (cpf, nome, telefone, data_cadastro, num_apto) values (%s, %s, %s, %s, %s)"
         values = (person.get_cpf(), person.get_nome(), person.get_telefone(), person.get_data_cadastro(), num_apto)
 
         try:
@@ -14,6 +14,7 @@ class Person_Dao:
             print(f"{person.get_nome()} adicionado(a).")
         except psycopg2.Error as erro:
             print(erro)
+        
         Cursors.close_cursor()
 
     def delete(self, cpf):

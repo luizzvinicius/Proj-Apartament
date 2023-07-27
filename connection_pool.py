@@ -11,7 +11,7 @@ class Connection:
     __user = dotenv.get_key(".env", "user")
     __port = dotenv.get_key(".env", "port")
     __db_name = dotenv.get_key(".env", "db_name")
-    __min_conn = 1
+    __min_conn = 0
     __max_conn = 3
     _pool = None
 

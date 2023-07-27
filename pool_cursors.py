@@ -6,13 +6,16 @@ class Cursors:
         self._connection = None
         self._cursor = None
 
-    @classmethod
-    def create_cursor(cls):
-        cls._connection = Connection.get_connection()
-        cls._cursor = cls._connection.cursor()
-        return cls._cursor
+    def __enter__(self):
+        self._connection = Connection().get_connection()
+        self._cursor = self._connection.cursor()
+        return self._cursor
 
-    @classmethod
-    def close_cursor(cls):
-        cls._cursor.close()
-        Connection.leave_connection(cls._connection)
+    def __exit__(self, exception_kind, exception_value, exception_detail):
+        if exception_value:
+            self._connection.rollback()
+        else:
+            self._connection.commit()
+
+        self._cursor.close()
+        Connection().leave_connection(self._connection)

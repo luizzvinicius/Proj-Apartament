@@ -6,12 +6,12 @@ from vehicle import Vehicle
 
 class VehicleDao:
     def insert(self, vehicle: Vehicle, num_apto):
-        sql = "insert into veiculo (placa, categoria, cor, modelo, observacao, data_cadastro, num_apto) values (%s, %s, %s, %s, %s, %s, %s)"
+        command = "insert into veiculo (placa, categoria, cor, modelo, observacao, data_cadastro, num_apto) values (%s, %s, %s, %s, %s, %s, %s)"
         values = (vehicle.get_placa(), vehicle.get_categoria(), vehicle.get_cor(), vehicle.get_modelo(), vehicle.get_observacao(), vehicle.get_data(), num_apto)
 
         with Cursors() as cursor:
             try:
-                cursor.execute(sql, values)
+                cursor.execute(command, values)
                 print(f"{vehicle.get_categoria()} adicionado(a).")
             except psycopg2.Error as erro:
                 print(erro)
@@ -35,11 +35,9 @@ class VehicleDao:
                 print(erro)
 
     def select(self, placa):
-        sql = "select * from veiculo where placa = %s"
-
         with Cursors() as cursor:
             try:
-                cursor.execute(sql, (placa,))
+                cursor.execute("select * from veiculo where placa = %s", (placa,))
                 res = cursor.fetchall()
                 print("Select realizado.")
             except psycopg2.Error as erro:

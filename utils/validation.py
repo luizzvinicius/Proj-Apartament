@@ -2,12 +2,12 @@
 import re
 
 
-def apto(num_apto):
+def apt(num_apt):
     '''Valida o número do apartamento'''
-    if len(num_apto) == 2 or len(num_apto) > 3:
+    if len(num_apt) == 2 or len(num_apt) > 3:
         print("\033[31mNúmero de apartamento inválido.\033[m\n")
         return False
-    if not (num_apto[0] in ("0", "1", "2", "3") and num_apto[1] == "0" and num_apto[2] in ("1", "2", "3", "4")):
+    if not (num_apt[0] in ("0", "1", "2", "3") and num_apt[1] == "0" and num_apt[2] in ("1", "2", "3", "4")):
         print("\033[31mNúmero de apartamento inválido.\033[m\n")
         return False
     return True

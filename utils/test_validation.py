@@ -2,13 +2,13 @@ from utils import validation
 
 
 def test_apto_number_is_ok():
-    assert validation.apto("001") is True
-    assert validation.apto("004") is True
-    assert validation.apto("304") is True
-    assert validation.apto("000") is False
-    assert validation.apto("100") is False
-    assert validation.apto("501") is False
-    assert validation.apto("0402") is False
+    assert validation.apt("001") is True
+    assert validation.apt("004") is True
+    assert validation.apt("304") is True
+    assert validation.apt("000") is False
+    assert validation.apt("100") is False
+    assert validation.apt("501") is False
+    assert validation.apt("0402") is False
 
 
 def test_placa_format_is_ok():

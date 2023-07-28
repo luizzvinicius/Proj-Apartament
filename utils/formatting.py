@@ -3,7 +3,7 @@
 
 def cpf(str_cpf):
     '''Formata o CPF para xxx.xxx.xxx-xx'''
-    return f"{str_cpf[0:4]}.{str_cpf[3:6]}.{str_cpf[6:9]}-{str_cpf[9:]}"
+    return f"{str_cpf[0:3]}.{str_cpf[3:6]}.{str_cpf[6:9]}-{str_cpf[9:]}"
 
 
 def phone_number(number):

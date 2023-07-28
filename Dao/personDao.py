@@ -1,5 +1,4 @@
 import psycopg2
-from connection_pool import Connection
 from person import Person
 from pool_cursors import Cursors
 

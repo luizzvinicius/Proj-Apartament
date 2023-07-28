@@ -3,8 +3,10 @@ from utils import validation
 
 def test_apto_number_is_ok():
     assert validation.apt("001") is True
-    assert validation.apt("004") is True
     assert validation.apt("304") is True
+    assert validation.apt("203") is True
+    assert validation.apt("314") is False
+    assert validation.apt("32") is False
     assert validation.apt("000") is False
     assert validation.apt("100") is False
     assert validation.apt("501") is False

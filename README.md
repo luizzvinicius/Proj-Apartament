@@ -12,14 +12,18 @@ Projeto feito com Python e PostgreSQL que simula a portaria de um prédio.
 
 Configure um arquivo .env com as seguintes variáveis:<br>
 * last_bloco = blocos que contém no seu condomínio<br>
-* host
+* db_name = nome do banco<br>
+* host = URL do banco de dados<br>
 * user = seu usuário Postgre<br>
 * password = sua senha Postgre<br>
-* port
-* db_name = nome do banco
+* port = porta do banco de dados
 
 ### 2. Instale o módulo que faz a conexão com o PostgreSQL.
-É necessário criar o banco de dados no PgAdmin antes de executar o projeto<br>
-`pip install psycopg2`
+`pip install psycopg2`<br>
+É necessário criar o banco de dados no PgAdmin antes de executar o projeto.<br>
+As tabelas estão no arquivo `data_base.sql`
 
 Feito isso, é só executar o arquivo main.py
+
+### 3. Caso desejete, instale a biblioteca de testes pytest
+Há alguns arquivos de teste para a validação das funções de formatação, etc.

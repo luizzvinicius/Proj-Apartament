@@ -12,7 +12,7 @@ def phone_number(number):
 
 
 def split_num_apt(num):
-    return f"Bloco {num[0:2]} Número {2:}"
+    return f"Bloco {num[0:2]} Número {num[2:]}"
 
 
 def date(str_date):

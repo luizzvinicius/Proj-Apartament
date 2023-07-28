@@ -7,12 +7,12 @@ from vehicle import Vehicle
 class VehicleDao:
     def insert(self, vehicle: Vehicle, num_apto):
         command = "insert into veiculo (placa, categoria, cor, modelo, observacao, data_cadastro, num_apto) values (%s, %s, %s, %s, %s, %s, %s)"
-        values = (vehicle.get_placa(), vehicle.get_categoria(), vehicle.get_cor(), vehicle.get_modelo(), vehicle.get_observacao(), vehicle.get_data(), num_apto)
+        values = (vehicle.get_placa(), vehicle.get_category(), vehicle.get_color(), vehicle.get_model(), vehicle.get_obs(), vehicle.get_date(), num_apto)
 
         with Cursors() as cursor:
             try:
                 cursor.execute(command, values)
-                print(f"{vehicle.get_categoria()} adicionado(a).")
+                print(f"{vehicle.get_category()} adicionado(a).")
             except psycopg2.Error as erro:
                 print(erro)
 

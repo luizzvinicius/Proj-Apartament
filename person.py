@@ -1,27 +1,27 @@
 class Person:
     '''Classe que cria o proprietátio e moradores do apartamento.'''
 
-    def __init__(self, info, data_cadastro):
-        self.__cpf = info['cpf']
-        self.__nome = info['name']
-        self.__telefone = info['telefone']
-        self.__data_cadastro = data_cadastro
+    def __init__(self, name, cpf, phone, register_date):
+        self.__name = name
+        self.__cpf = cpf
+        self.__phone = phone
+        self.__register_date = register_date
 
     def to_string(self):
+        name = self.__name
         cpf = self.__cpf
-        nome = self.__nome
-        tel = self.__telefone
-        data = self.__data_cadastro
-        return f"Person: [CPF: {cpf}, nome: {nome}, telefone: {tel}, data_cadastro: {data}]"
+        phone = self.__phone
+        date = self.__register_date
+        return f"Person: [CPF: {cpf}, nome: {name}, telefone: {phone}, register_date: {date}]"
 
     def get_cpf(self):
         return self.__cpf
 
-    def get_nome(self):
-        return self.__nome
+    def get_name(self):
+        return self.__name
 
-    def get_telefone(self):
-        return self.__telefone
+    def get_phone(self):
+        return self.__phone
 
-    def get_data_cadastro(self):
-        return self.__data_cadastro
+    def get_date(self):
+        return self.__register_date

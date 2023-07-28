@@ -1,16 +1,16 @@
 class Apartament:
     """Classe apartamento"""
 
-    def __init__(self, numero, data_cadastro):
-        self.__numero = numero
-        self.__data_cadastro = data_cadastro
+    def __init__(self, number, register_date):
+        self.__number = number
+        self.__register_date = register_date
 
     def to_string(self):
         '''Retorna todas as informações do apartamento.'''
-        return f"Apartamento: [número: {self.__numero}, data_cadastro: {self.__data_cadastro}]"
+        return f"Apartamento: [número: {self.__number}, data_cadastro: {self.__register_date}]"
 
-    def get_numero(self):
-        return self.__numero
+    def get_number(self):
+        return self.__number
 
-    def get_data(self):
-        return self.__data_cadastro
+    def get_date(self):
+        return self.__register_date

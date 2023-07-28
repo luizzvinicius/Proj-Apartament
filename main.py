@@ -50,7 +50,8 @@ def main(option_msg, queries_msg):
         if choice == 0:
             # cadastrar apartamento
             owner = person_register(owner=True)
-            apartament = apartament_register()
+            num_apt = read_num_apt()
+            apartament = Apartament(num_apt, day)
             people = apartament_residents()
 
             OwnerDao().insert(owner)
@@ -80,16 +81,15 @@ def main(option_msg, queries_msg):
 
         if choice == 2:
             # cadastrar veículo
-            placa = read_placa()
-            res = VehicleDao().select(placa)
-            if len(res) == 4:
+            cpf = reader.read_eleven_digits("CPF")
+            res = ApartamentDao().select(cpf)
+            if len(res['veiculo']) == 4:
                 print("Limite máximo de veículos por apartamento atingido.")
             else:
-                num_apt = read_num_apt()
                 print("\nQual categoria?\n[ 1 ] Carro\n[ 2 ] Moto")
                 category = reader.read_option("Digite o número: ", max_opt=2, exept_msg="Categoria inválida.")
                 automobile = vehicle_register(category)
-                VehicleDao().insert(automobile, num_apt)
+                VehicleDao().insert(automobile, res['apartamento'][0][0])
 
         if choice == 3:
             # editar cor/observação
@@ -115,13 +115,17 @@ def main(option_msg, queries_msg):
             res = PersonDao().select(num_apt)
             formatting.show_array(res)
             opt = reader.read_option("Qual morador: ", max_opt=len(res)) - 1
-            # terminar
+            resident_cpf = res[opt][0]
+            PersonDao().delete(resident_cpf)
 
         if choice == 6:
             # deletar veículo
             placa = read_placa()
-            VehicleDao().delete(placa)
-            # terminar
+            res = VehicleDao().select(placa)
+            if len(res) == 0:
+                print("Não há veículos com essa placa.")
+            else:
+                VehicleDao().delete(placa)
 
         if choice == 7:
             print()
@@ -158,6 +162,7 @@ def main(option_msg, queries_msg):
 
 
 def read_num_apt():
+    '''Função que cria a numeração do apartamento.'''
     bloco = reader.read_option("Bloco: ", max_opt=last_bloco, exept_msg="Número de bloco inválido.")
     bloco = "0" + str(bloco) if bloco < 10 else str(bloco)
 
@@ -170,12 +175,6 @@ def read_num_apt():
         if validation.apt(num_apt) is True:
             break
     return bloco + num_apt
-
-
-def apartament_register():
-    '''Função que cria a numeração do apartamento.'''
-    num_apt = read_num_apt()
-    return Apartament(num_apt, day)
 
 
 def apartament_residents():

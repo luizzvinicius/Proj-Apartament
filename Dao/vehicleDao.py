@@ -12,17 +12,17 @@ class VehicleDao:
         with Cursors() as cursor:
             try:
                 cursor.execute(command, values)
-                print(f"{vehicle.get_category()} adicionado(a).")
+                print(f"{vehicle.get_category()} adicionado(a).\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
 
     def delete(self, placa):
         with Cursors() as cursor:
             try:
                 cursor.execute("delete from veiculo where placa = %s", (placa,))
-                print("Veículo excluído.")
+                print("Veículo excluído.\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
 
     def update(self, field, new_value, placa):
         command = sql.SQL("update veiculo set {} = %s where placa = %s").format(sql.Identifier(field))
@@ -30,16 +30,16 @@ class VehicleDao:
         with Cursors() as cursor:
             try:
                 cursor.execute(command, (new_value, placa))
-                print(f"{field} alterado(a).")
+                print(f"{field} alterado(a).\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
 
     def select(self, placa):
         with Cursors() as cursor:
             try:
                 cursor.execute("select * from veiculo where placa = %s", (placa,))
                 res = cursor.fetchall()
-                print("Select realizado.")
+                print("Select realizado.\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
         return res

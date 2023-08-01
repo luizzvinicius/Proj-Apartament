@@ -10,9 +10,9 @@ class ApartamentDao:
         with Cursors() as cursor:
             try:
                 cursor.execute(sql, (apt.get_number(), cpf, apt.get_date()))
-                print("Apartamento criado.")
+                print("Apartamento criado.\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
 
     def select(self, cpf):
         query1 = "select * from proprietario where cpf = %s"
@@ -30,7 +30,7 @@ class ApartamentDao:
                 res3 = cursor.fetchall()
                 cursor.execute(query4, (cpf,))
                 res4 = cursor.fetchall()
-                print("Select realizado")
+                print("Select realizado.\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
         return {"proprietario": res1, "apartamento": res2, "veiculo": res3, "moradores": res4}

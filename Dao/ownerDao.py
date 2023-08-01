@@ -11,27 +11,25 @@ class OwnerDao:
         with Cursors() as cursor:
             try:
                 cursor.execute(sql, values)
-                print(f"{person.get_name()} adicionado(a).")
+                print(f"{person.get_name()} adicionado(a).\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
 
     def delete(self, cpf):
         with Cursors() as cursor:
             try:
                 cursor.execute(
                     "delete from proprietario where cpf = %s", (cpf,))
-                print(
-                    "Todos os registros relacionados a esse proprietário foram apagados.")
+                print("Todos os registros relacionados a esse proprietário foram apagados.\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
 
     def select(self, cpf):
         with Cursors() as cursor:
             try:
-                cursor.execute(
-                    "select * from proprietario where cpf = %s", (cpf,))
+                cursor.execute("select * from proprietario where cpf = %s", (cpf,))
                 res = cursor.fetchall()
-                print("Select realizado.")
+                print("Select realizado.\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
         return res

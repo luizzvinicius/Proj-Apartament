@@ -27,10 +27,10 @@ def show_array(array):
 
 def show_apartament(obj):
     num_apt = split_num_apt(obj['apartamento'][0][0])
-    print(f"\nProprietário do apartamento {num_apt}.")
+    print(f"Proprietário do apartamento {num_apt}.")
     show_person(obj['proprietario'])
 
-    print(f"\nMoradores do apartamento {num_apt}.")
+    print(f"Moradores do apartamento {num_apt}.")
     show_person(obj['moradores'])
 
     if len(obj['veiculo']) != 0:
@@ -46,7 +46,7 @@ def show_person(obj):
 
 
 def show_vehicle(obj):
-    print("\nVeículos do apartamento.")
+    print("Veículos do apartamento.")
     for i in obj:
         print(f"\tPlaca: {i[0]}")
         print(f"\tCategoria: {i[1]}")

@@ -72,9 +72,9 @@ def main(option_msg, queries_msg):
             num_apt = read_num_apt()
             res = PersonDao().select(num_apt)
             if len(res) == 0:
-                print("Apartamento não cadastrado.")
+                print("Apartamento não cadastrado.\n")
             elif len(res) == 4:
-                print("Limite máximo de moradores por apartamento atingido.")
+                print("Limite máximo de moradores por apartamento atingido.\n")
             else:
                 person = person_register()
                 PersonDao().insert(person, num_apt)
@@ -83,10 +83,11 @@ def main(option_msg, queries_msg):
             # cadastrar veículo
             cpf = reader.read_eleven_digits("CPF")
             res = ApartamentDao().select(cpf)
-            if len(res['veiculo']) == 4:
-                print("Limite máximo de veículos por apartamento atingido.")
+            if len(res['veiculo']) == 4 or len(res['apartamento']) == 0:
+                print("Limite máximo de veículos por apartamento atingido", end=" ")
+                print("ou apartamento não cadastrado.\n")
             else:
-                print("\nQual categoria?\n[ 1 ] Carro\n[ 2 ] Moto")
+                print("Qual categoria?\n[ 1 ] Carro\n[ 2 ] Moto")
                 category = reader.read_option("Digite o número: ", max_opt=2, exept_msg="Categoria inválida.")
                 automobile = vehicle_register(category)
                 VehicleDao().insert(automobile, res['apartamento'][0][0])
@@ -107,16 +108,23 @@ def main(option_msg, queries_msg):
         if choice == 4:
             # deletar proprietário
             cpf = reader.read_eleven_digits("CPF")
-            OwnerDao().delete(cpf)
+            res = OwnerDao().select(cpf)
+            if len(res) == 1:
+                OwnerDao().delete(cpf)
+            else:
+                print("Proprietário não cadastrado/existe.\n")
 
         if choice == 5:
             # deletar morador
             num_apt = read_num_apt()
             res = PersonDao().select(num_apt)
-            formatting.show_array(res)
-            opt = reader.read_option("Qual morador: ", max_opt=len(res)) - 1
-            resident_cpf = res[opt][0]
-            PersonDao().delete(resident_cpf)
+            if len(res) > 0:
+                formatting.show_array(res)
+                opt = reader.read_option("Qual morador: ", max_opt=len(res)) - 1
+                resident_cpf = res[opt][0]
+                PersonDao().delete(resident_cpf)
+            else:
+                print("Não há pessoas nesse apartamento")
 
         if choice == 6:
             # deletar veículo
@@ -135,17 +143,26 @@ def main(option_msg, queries_msg):
             if n_consulta == 0:
                 cpf = reader.read_eleven_digits("CPF")
                 res = ApartamentDao().select(cpf)
-                formatting.show_apartament(res)
+                if len(res) == 1:
+                    formatting.show_apartament(res)
+                else:
+                    print("Apartamento não cadastrado/existe.\n")
 
             if n_consulta == 1:
                 cpf = reader.read_eleven_digits("CPF")
                 res = OwnerDao().select(cpf)
-                formatting.show_person(res)
+                if len(res) == 1:
+                    formatting.show_person(res)
+                else:
+                    print("Proprietário não cadastrado/existe.\n")
 
             if n_consulta == 2:
                 num_apt = read_num_apt()
                 people = PersonDao().select(num_apt)
-                formatting.show_person(people)
+                if len(res) > 0:
+                    formatting.show_person(people)
+                else:
+                    print("Morador não cadastrado/existe.\n")
 
             if n_consulta == 3:
                 placa = read_placa()
@@ -210,7 +227,7 @@ def person_register(owner=False):
 
 def read_placa():
     while True:
-        placa = input("Qual a placa do(a) veículo: ").strip().lower()
+        placa = input("Qual a placa do(a) veículo: ").strip().upper()
         if validation.placa(placa) is True:
             return placa
         print("Placa inválida.\n")

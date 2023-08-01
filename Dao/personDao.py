@@ -11,25 +11,24 @@ class PersonDao:
         with Cursors() as cursor:
             try:
                 cursor.execute(sql, values)
-                print(f"{person.get_name()} adicionado(a).")
+                print(f"{person.get_name()} adicionado(a).\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
 
     def delete(self, cpf):
         with Cursors() as cursor:
             try:
                 cursor.execute("delete from pessoa where cpf = %s", (cpf,))
-                print("Morador excluído.")
+                print("Morador excluído.\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
 
     def select(self, num_apt):
         with Cursors() as cursor:
             try:
-                cursor.execute(
-                    "select * from pessoa where num_apto = %s", (num_apt,))
+                cursor.execute("select * from pessoa where num_apto = %s", (num_apt,))
                 res = cursor.fetchall()
-                print("Select realizado.")
+                print("Select realizado.\n")
             except psycopg2.Error as erro:
-                print(erro)
+                print(f"\n{erro}")
         return res

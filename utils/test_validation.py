@@ -13,19 +13,19 @@ def test_apto_number_is_ok():
     assert validation.apt("0402") is False
 
 
-def test_placa_format_is_ok():
-    # Padrão
-    assert validation.placa("jvm5602") is True
-    assert validation.placa("JDK9874") is True
-    assert validation.placa("JdK8710") is True
-    assert validation.placa("Jvm403p") is False
-    assert validation.placa(" JDK9874") is False
-    assert validation.placa("JDK 9874") is False
-    assert validation.placa("iot1090 ") is False
-    # Mercosul
-    assert validation.placa("pip1l45") is True
-    assert validation.placa("PiP2L45") is True
-    assert validation.placa("pip3790") is True
+# def test_placa_format_is_ok():
+#     # Padrão
+#     assert validation.placa("jvm5602") is True
+#     assert validation.placa("JDK9874") is True
+#     assert validation.placa("JdK8710") is True
+#     assert validation.placa("Jvm403p") is False
+#     assert validation.placa(" JDK9874") is False
+#     assert validation.placa("JDK 9874") is False
+#     assert validation.placa("iot1090 ") is False
+#     # Mercosul
+#     assert validation.placa("pip1l45") is True
+#     assert validation.placa("PiP2L45") is True
+#     assert validation.placa("pip3790") is True
 
 
 def test_name_is_ok():

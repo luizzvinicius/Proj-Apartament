@@ -12,12 +12,16 @@ def apt(num_apt):
         return False
     return True
 
-
-def placa(str_palca):
+#decorator
+def placa(func):
     '''Valida se a placa do carro obedece o padrão normal ou mercosul'''
-    if re.match(r"^[A-Za-z]{3}\d{1}[A-Za-z0-9]{1}\d{2}$", str_palca):
-        return True
-    return False
+    def valida():
+        while True:
+            pl = func()
+            if re.match(r"^[A-Za-z]{3}\d{1}[A-Za-z0-9]{1}\d{2}$", pl):
+                return pl
+            print("Placa inválida.\n")
+    return valida
 
 
 def name(person_name):

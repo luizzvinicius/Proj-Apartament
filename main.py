@@ -97,7 +97,7 @@ def main(option_msg, queries_msg):
             placa = read_placa()
             res = VehicleDao().select(placa)
             if len(res) == 0:
-                print("Veículo não cadastrado.")
+                print("Veículo não cadastrado.\n")
             else:
                 print("\nQual campo?\n[ 1 ] Cor\n[ 2 ] Observação")
                 opt = reader.read_option("Digite o número: ", max_opt=2, exept_msg="Campo inválido.")
@@ -225,12 +225,10 @@ def person_register(owner=False):
     return Person(name, cpf, phone, day)
 
 
+@validation.placa
 def read_placa():
-    while True:
-        placa = input("Qual a placa do(a) veículo: ").strip().upper()
-        if validation.placa(placa) is True:
-            return placa
-        print("Placa inválida.\n")
+    placa = input("Qual a placa do(a) veículo: ").strip().upper()
+    return placa
 
 
 def vehicle_register(category):

@@ -131,7 +131,7 @@ def main(option_msg, queries_msg):
             placa = read_placa()
             res = VehicleDao().select(placa)
             if len(res) == 0:
-                print("Não há veículos com essa placa.")
+                print("Não há veículos com essa placa.\n")
             else:
                 VehicleDao().delete(placa)
 

@@ -143,7 +143,7 @@ def main(option_msg, queries_msg):
             if n_consulta == 0:
                 cpf = reader.read_eleven_digits("CPF")
                 res = ApartamentDao().select(cpf)
-                if len(res) == 1:
+                if len(res) > 0:
                     formatting.show_apartament(res)
                 else:
                     print("Apartamento não cadastrado/existe.\n")
@@ -159,7 +159,7 @@ def main(option_msg, queries_msg):
             if n_consulta == 2:
                 num_apt = read_num_apt()
                 people = PersonDao().select(num_apt)
-                if len(res) > 0:
+                if len(people) > 0:
                     formatting.show_person(people)
                 else:
                     print("Morador não cadastrado/existe.\n")
